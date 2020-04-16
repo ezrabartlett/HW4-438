@@ -83,21 +83,29 @@ int Client::connectTo()
     // a member variable in your own Client class.
     // Please refer to gRpc tutorial how to create a stub.
 	// ------------------------------------------------------------
-
-    
-    
-    stub_ = TinySNS::NewStub(grpc::CreateChannel(hostname + ":" + port, grpc::InsecureChannelCredentials()));
-
     ClientContext client_context;
+    
+    std::unique_ptr<TinySNS::Stub> routerStub = TinySNS::NewStub(grpc::CreateChannel(hostname + ":" + port, grpc::InsecureChannelCredentials()));
+    
+    ServerInfo masterInfo;
+    // Empty user to be replaced with emptyproto
+    User tempUser;
+    
+    Status masterReplyStatus = stub_->getMaster(&client_context, tempUser, &masterInfo );
+    
+    stub_ = TinySNS::NewStub(grpc::CreateChannel(masterInfo.ip + ":" + masterInfo.port, grpc::InsecureChannelCredentials()));
+
 
     User current_user;
     
     ServerInfo server;
+    
     Status masterReplyStatus = stub_->getMaster(&client_context, current_user, &server );
     
     current_user.set_username(username);
     
     ReplyStatus login_status;
+    
     Status status = stub_->Login(&client_context, current_user, &login_status);
     
     if(login_status.status()=="1"){

@@ -172,6 +172,7 @@ IReply Client::processCommand(std::string& input)
         command_reply.comm_status = FAILURE_ALREADY_EXISTS;
     else if(status.status() == "2")
         command_reply.comm_status = FAILURE_NOT_EXISTS;
+        connectTo()
     else if(status.status() == "3")
         command_reply.comm_status = FAILURE_INVALID_USERNAME;
     else if(status.status() == "4")

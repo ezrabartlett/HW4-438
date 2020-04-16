@@ -9,12 +9,18 @@ package tinysns;
 
 
 service TinySNS {
+      rpc getMaster() returns (ServerInfo)
       rpc Login(User) returns (ReplyStatus) {}
       rpc GetList(User) returns (stream User) {}
       rpc Follow(FollowOp) returns (ReplyStatus) {}
       rpc Unfollow(FollowOp) returns (ReplyStatus) {}
       rpc GetTimeline(User) returns (stream Posting) {}
       rpc PostTimeline(NewPosting) returns (ReplyStatus) {}
+}
+
+message ServerInfo {
+    string ip = 0
+    string port = 3000
 }
 
 message User {

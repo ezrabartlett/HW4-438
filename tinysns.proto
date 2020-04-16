@@ -9,7 +9,7 @@ package tinysns;
 
 
 service TinySNS {
-    rpc getMaster() returns (ServerInfo) {}
+      rpc getMaster(User) returns (ServerInfo) {}
       rpc Login(User) returns (ReplyStatus) {}
       rpc GetList(User) returns (stream User) {}
       rpc Follow(FollowOp) returns (ReplyStatus) {}

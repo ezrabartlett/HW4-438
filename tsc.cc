@@ -85,14 +85,13 @@ int Client::connectTo()
     
     
     stub_ = TinySNS::NewStub(grpc::CreateChannel(hostname + ":" + port, grpc::InsecureChannelCredentials()));
-    
-    
-    
-    tinysns::ServerInfo server = stub_->getMaster();
 
     ClientContext client_context;
 
-    User current_user; 
+    User current_user;
+    
+    tinysns::ServerInfo server = stub_->getMaster(User);
+    
     current_user.set_username(username);
     
     ReplyStatus login_status;

@@ -19,7 +19,7 @@ service TinySNS {
 }
 
 message ServerInfo {
-    string ip = 0;
+    string ip = 1;
     string port = 3000;
 }
 

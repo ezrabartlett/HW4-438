@@ -92,8 +92,8 @@ int Client::connectTo()
 
     User current_user;
     
-    
-    tinysns::ServerInfo server = stub_->getMaster(&client_context, current_user, &login_status );
+    ServerInfo server;
+    ReplyStatus masterReplyStatus = stub_->getMaster(&client_context, current_user, &server );
     
     current_user.set_username(username);
     

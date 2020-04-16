@@ -7,6 +7,7 @@
 #include <grpc++/grpc++.h>
 #include "client.h"
 #include "tinysns.grpc.pb.h"
+#include "google/protobuf/empty.proto"
 
 using grpc::Channel;
 using grpc::ClientContext;
@@ -90,7 +91,7 @@ int Client::connectTo()
 
     User current_user;
     
-    tinysns::ServerInfo server = stub_->getMaster(User);
+    tinysns::ServerInfo server = stub_->getMaster(google.protobuf.Empty);
     
     current_user.set_username(username);
     

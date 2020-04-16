@@ -199,6 +199,6 @@ void displayPostMessage(const std::string& sender, const std::string& message, s
     std::cout << sender << "(" << t_str << ") >> " << message << std::endl;
 }
 
-void displayReconnectionMessage(const std:string& host, const std: string& port) {
-std:cout << "Reconnecting to "<<host<<":"<<port<<std::endl;
+void displayReconnectionMessage(const std::string& host, const std::string& port) {
+std::cout << "Reconnecting to "<<host<<":"<<port<<std::endl;
 }

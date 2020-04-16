@@ -192,7 +192,7 @@ IReply Client::processCommand(std::string& input)
         command_reply.comm_status = SUCCESS;
     
     
-    //std::cout << status.status();
+    std::cout << status.status() << "commStatus";
     
     // ------------------------------------------------------------
 	// GUIDE 2:

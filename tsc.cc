@@ -173,7 +173,7 @@ IReply Client::processCommand(std::string& input)
         command_reply.grpc_status = stub_->Unfollow(&command_context, to_unfollow, &status);
     } else if(strncmp(input_copy, "LIST", 4)==0){}
     
-    std::cout << command_reply.grpc_status << "_Status";
+    //std::cout << command_reply.grpc_status << "_Status";
     
     // Convert to comm iStatus message before returning
     if(status.status() == "0")

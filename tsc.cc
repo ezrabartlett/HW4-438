@@ -16,6 +16,7 @@ using grpc::ClientReaderWriter;
 using grpc::ClientWriter;
 using grpc::Status;
 using tinysns::User;
+using tinysns::ServerInfo;
 using tinysns::ReplyStatus;
 using tinysns::Posting;
 using tinysns::NewPosting;
@@ -92,7 +93,7 @@ int Client::connectTo()
     User current_user;
     
     
-    tinysns::ServerInfo server = stub_->getMaster(current_user);
+    tinysns::ServerInfo server = stub_->getMaster(&client_context, current_user, &login_status );
     
     current_user.set_username(username);
     

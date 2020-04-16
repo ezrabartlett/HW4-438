@@ -96,7 +96,7 @@ int Client::connectTo()
     // get master info
     ServerInfo masterServer;
     
-    Status getMasterStatus = tempStub_->getMaster(client_context, current_user, masterServer)
+    Status getMasterStatus = tempStub_->getMaster(&client_context, current_user, masterServer)
     
     //Use new masterInfo to connect to a new stub
     stub_ = TinySNS::NewStub(grpc::CreateChannel(masterServer.ip() + ":" + masterServer.port(), grpc::InsecureChannelCredentials()));

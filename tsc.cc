@@ -93,7 +93,7 @@ int Client::connectTo()
     User current_user;
     
     ServerInfo server;
-    ReplyStatus masterReplyStatus = stub_->getMaster(&client_context, current_user, &server );
+    Status masterReplyStatus = stub_->getMaster(&client_context, current_user, &server );
     
     current_user.set_username(username);
     

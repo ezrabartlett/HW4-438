@@ -7,7 +7,6 @@
 #include <grpc++/grpc++.h>
 #include "client.h"
 #include "tinysns.grpc.pb.h"
-//#include "google/protobuf/empty.proto"
 
 using grpc::Channel;
 using grpc::ClientContext;
@@ -86,14 +85,12 @@ int Client::connectTo()
     
     
     stub_ = TinySNS::NewStub(grpc::CreateChannel(hostname + ":" + port, grpc::InsecureChannelCredentials()));
+    
+    serverInfo = stub_->getMaster();
 
     ClientContext client_context;
 
-    User current_user;
-    
-    
-    //tinysns::ServerInfo server = stub_->getMaster(current_user);
-    
+    User current_user; 
     current_user.set_username(username);
     
     ReplyStatus login_status;

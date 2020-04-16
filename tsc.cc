@@ -85,15 +85,15 @@ int Client::connectTo()
 	// ------------------------------------------------------------
     ClientContext client_context;
     
-    std::unique_ptr<TinySNS::Stub> routerStub = TinySNS::NewStub(grpc::CreateChannel(hostname + ":" + port, grpc::InsecureChannelCredentials()));
-    
+    //std::unique_ptr<TinySNS::Stub> routerStub = TinySNS::NewStub(grpc::CreateChannel(hostname + ":" + port, grpc::InsecureChannelCredentials()));
+    stub_ = TinySNS::NewStub(grpc::CreateChannel(hostname + ":" + port, grpc::InsecureChannelCredentials()));
     ServerInfo masterInfo;
     // Empty user to be replaced with emptyproto
     User tempUser;
     
-    Status masterReplyStatus = stub_->getMaster(&client_context, tempUser, &masterInfo );
+    //Status masterReplyStatus = stub_->getMaster(&client_context, tempUser, &masterInfo );
     
-    stub_ = TinySNS::NewStub(grpc::CreateChannel(masterInfo.ip() + ":" + masterInfo.port(), grpc::InsecureChannelCredentials()));
+    //stub_ = TinySNS::NewStub(grpc::CreateChannel(masterInfo.ip() + ":" + masterInfo.port(), grpc::InsecureChannelCredentials()));
 
 
     User current_user;

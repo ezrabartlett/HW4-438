@@ -93,7 +93,7 @@ int Client::connectTo()
     
     Status masterReplyStatus = stub_->getMaster(&client_context, tempUser, &masterInfo );
     
-    stub_ = TinySNS::NewStub(grpc::CreateChannel(masterInfo.ip + ":" + masterInfo.port, grpc::InsecureChannelCredentials()));
+    stub_ = TinySNS::NewStub(grpc::CreateChannel(masterInfo.ip() + ":" + masterInfo.port(), grpc::InsecureChannelCredentials()));
 
 
     User current_user;

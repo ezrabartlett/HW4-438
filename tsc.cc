@@ -7,6 +7,7 @@
 #include <grpc++/grpc++.h>
 #include "client.h"
 #include "tinysns.grpc.pb.h"
+//#include "google/protobuf/empty.proto"
 
 using grpc::Channel;
 using grpc::ClientContext;
@@ -18,6 +19,7 @@ using tinysns::User;
 using tinysns::ReplyStatus;
 using tinysns::Posting;
 using tinysns::NewPosting;
+using tinysns::ServerInfo;
 using tinysns::TinySNS;
 
 
@@ -83,14 +85,22 @@ int Client::connectTo()
 	// ------------------------------------------------------------
 
     
-    
-    stub_ = TinySNS::NewStub(grpc::CreateChannel(hostname + ":" + port, grpc::InsecureChannelCredentials()));
-    
-    serverInfo = stub_->getMaster();
+    // Router stub
+    std::unique_ptr<TinySNS::Stub> tempStub_;
+    tempStub_ = TinySNS::NewStub(grpc::CreateChannel(hostname + ":" + port, grpc::InsecureChannelCredentials()));
 
     ClientContext client_context;
 
-    User current_user; 
+    User current_user;
+    
+    // get master info
+    ServerInfo masterServer;
+    
+    Status getMasterStatus = tempStub_->getMaster($client_context, current_user, $masterServer)
+    
+    //Use new masterInfo to connect to a new stub
+    stub_ = TinySNS::NewStub(grpc::CreateChannel(masterServer.ip() + ":" + masterServer.port(), grpc::InsecureChannelCredentials()));
+    
     current_user.set_username(username);
     
     ReplyStatus login_status;

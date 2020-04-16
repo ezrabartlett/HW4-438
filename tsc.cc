@@ -170,11 +170,8 @@ IReply Client::processCommand(std::string& input)
         
         std::cout << (char*)"unfollow command";
         
-        if (command_reply.grpc_status = stub_->Unfollow(&command_context, to_unfollow, &status)){
-            std::cout << "success";
-        }
-        else {
-            std::cout << "Failure";
+        if (command_reply.grpc_status = stub_->Unfollow(&command_context, to_unfollow, &status) == NULL){
+            std::cout << "Null dfasdf";
         }
     } else if(strncmp(input_copy, "LIST", 4)==0){}
     

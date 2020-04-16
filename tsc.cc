@@ -92,7 +92,7 @@ int Client::connectTo()
     User current_user;
     
     
-    tinysns::ServerInfo server = stub_->getMaster(current_user);
+    //tinysns::ServerInfo server = stub_->getMaster(current_user);
     
     current_user.set_username(username);
     
